@@ -1,0 +1,75 @@
+## Autentifikacija ##
+
+- login (dodati greske za invalid argument exception - status code) +
+- sesija za prikaz linkova (login, registracija, logout) +
+- logout +
+
+### PAGES ###
+
+-- funkcionalnost za error je dodata -> napraviti stranicu
+
+## ZAHTEVI ## 
+
+-- get zahtev kreiran -> testirati
+
+## Baze ##
+
+-- category_tour (category_id, tour_id) +
+-- tour_galery (tour_galery_id, image_path, tour_id)
+-- tour_tags (tour_id, tag_id) + 
+-- toud_dates (id, tour_id, start_date) 
+-- tagovi (Neka se unose kroz tekstualno polje tj. textarea), neka reci u  tekstu budu razdvojeni zarezom +
+-- wislist(user_id, id)
+-- wishlist_items (id, wishlist_id, tour_id)
+-- reservation (id, first_name, last_name, email, phone)
+-- reservation_items (id, reservation_id, tour_date_id)
+
+## KATEGORIJE ##
+
+-- kategorije delete ispitati i proveriti funkcionalnost nakon brisanja
+-- store je kreiran (-- proveriti sve metode koje dolaze kraj njih), poruka je kreirana ako je uspesna, forma je resetovana
+-- edit -> testirati i dodati kod u get zahtevu axios
+-- update uradjen -> (proveriti sve funkcionalnosti), prikazati poruku ako je uspesna, forma resetovana
+
+!! DODATI AUTORIZACIJU I TESTIRATI SVE !!
+
+### TURE ###
+
+-- PROMOCIjA je uradjena - testirati nakon izmene
+-- BRISANJE je zavrseno - tesitrati 
+-- EDITOVANJE je zavrseno - testirati
+-- STORE je zavrsen - testirati 
+-- UPDATE je zavrsen - testirati
+
+!! DODATI AUTORIZACIJU I TESTIRATI SVE !!
+
+### DATUMI ###
+
+! na frontu samo datum za start_date, za end_date (zavrseta ture sabrato sa duration)
+! uraditi detaljnu validaciju
+
+-- EDIT ZAVRSEN -> testirati
+-- DELETE zavrsen -> testirati
+-- UPDATE zavrsen -> testirati
+-- STORE zavrsen -> testirati
+
+! kada je jedan dan ispisvati samo taj, kada je vise pocetak i kraj (za korisnika)
+
+### KONTAKT ###
+
+-- store je zavrsen -> testirati
+-- delete je zavrsen -> testirati
+
+### WISHLIST - LISTA ZELJA ###
+
+-- STORE je dodat -> testirati
+-- REMOVE je dodat -> tesitrati
+
+### TOUR GALLERY ###
+
+-- store je dodat -> testirati
+-- remove je dodat -> testirati
+
+
+### RESERVATION FUNCTIONALITY ###
+-- store -> zavrsiti
