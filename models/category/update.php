@@ -3,8 +3,9 @@ header("Content-type:application/json");
 include '../response_functions.php';
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id = $_POST['id'];
-    $name = $_POST['name'];
+    $name = $_POST['category_name'];
 
+    include '../validation.php';
     $validation  = categoryFormValidation($name);
     if (count($validation) > 0) {
         validationError($validation);
