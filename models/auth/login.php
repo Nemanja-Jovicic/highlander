@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         try {
             require_once '../../config/connection.php';
             include '../functions.php';
-            if (checkEmail($email)) {
+            if (!checkEmail($email)) {
                invalidArugmentException('Nalog sa email nepostji');
             } else {
                 $user = checkUserAccount($email, $password);
