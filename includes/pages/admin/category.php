@@ -1,14 +1,18 @@
 <?php
-    $categories = getAllCategories();
+if (!isset($_SESSION['user']) || isset($_SESSION['user']) && $_SESSION['user']->role_id === 2) {
+    header("Location: index.php?page=greske&code=403");
+}
+$categories = getAllCategories();
+$categoryPagination = $categoryPagination();
 ?>
-<main class="container">
+<main class="container ">
     <div class="row mt-5">
         <div id="message" class="my-2"></div>
     </div>
-    <div class="row mt-2" id="events">
-        <div class="col-lg-8">
-            <div class="table-responsive-sm table-responsive-md">
-                <table class="table text-center align-middle">
+    <div class="row" id="events">
+        <div class="col-lg-8 ">
+            <div class="table-responsive-sm table-responsive-md table-container">
+                <table class="table text-center align-middle ">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -19,29 +23,35 @@
                             <th scope="col">Izbrisi</th>
                         </tr>
                     </thead>
-                    <tbody id="categories">
-                        <?php foreach($categories as $index => $category):?>
-                        <tr id="category_<?= $index?> ?>">
-                            <th scope="row"><?= $index+1 ?></th>
-                            <td><?= $category->name ?></td>
-                            <td><?= date('d/m/Y H:i:s', strtotime($category->created_at)) ?></td>
-                            <td><?=  $category->updated_at !== null ? date("d/m/Y H:i:s", strtotime($category->updated_at)) : "-" ?></td>
-                            <td><button class="btn btn-sm btn-success btn-edit btn-edit-category" type="button" data-id="<?= $category->id ?>"
-                                data-index="<?= $index ?>">Izmeni</button></td>
-                            <td>
-                                <button class="btn btn-sm btn-danger btn-delete btn-delete-category " type="button" data-id="<?= $category->id ?>"
-                                    data-status = "<?= $category->is_deleted ?>" data-index = "<?= $index ?>"
-                                ><?= $category->is_deleted === 0 ? "Izbrisi" : "Aktiviraj" ?></button>
-                            </td>
-                        </tr>
-                        <?php endforeach;?>
+                    <tbody id="category">
+                        <?php foreach ($categories as $index => $category): ?>
+                            <tr id="category_<?= $index ?>">
+                                <th scope="row"><?= $index + 1 ?></th>
+                                <td><?= $category->name ?></td>
+                                <td><?= date('d/m/Y H:i:s', strtotime($category->created_at)) ?></td>
+                                <td><?= $category->updated_at !== null ? date("d/m/Y H:i:s", strtotime($category->updated_at)) : "-" ?></td>
+                                <td><button class="btn btn-sm btn-success btn-edit btn-edit-category" type="button" data-id="<?= $category->id ?>"
+                                        data-index="<?= $index ?>">Izmeni</button></td>
+                                <td>
+                                    <button class="btn btn-sm btn-danger btn-delete btn-delete-category " type="button" data-id="<?= $category->id ?>"
+                                        data-status="<?= $category->is_deleted ?>" data-index="<?= $index ?>"><?= $category->is_deleted === 0 ? "Izbrisi" : "Aktiviraj" ?></button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
+            <nav aria-label="Page navigation example" class='mt-3 d-flex justify-content-center'>
+                <ul class="pagination" id="category_pagination">
+                    <?php for ($i = 0; $i < $categoryPagination; $i++): ?>
+                        <li class="page-item"><a class="<?= $i === 0 ? 'active' : '' ?> page-link page-category" href="#" data-link="<?= $i ?>"><?= $i + 1 ?></a></li>
+                    <?php endfor; ?>
+                </ul>
+            </nav>
         </div>
         <div class="col-lg-4 mt-2 mt-lg-0">
             <form action="#">
-                <input type="hidden" name="category_index" id="category_id">
+                <input type="hidden" name="category_id" id="category_id">
                 <input type="hidden" name="category_index" id="category_index">
                 <div class="mb-2">
                     <label for="category_name" class="mb-1">Naziv kategorije:</label>
