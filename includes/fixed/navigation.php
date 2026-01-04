@@ -10,12 +10,12 @@ $navigation = getMenu();
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <!-- deo za admina -->
-         <?php
-          foreach($navigation['pages'] as $page):?>
-        <li class="nav-item">
-          <a class="nav-link active" href="<?= $page->path?>"><?=$page->name?></a>
-        </li>
-        <?php endforeach;?>
+        <?php
+        foreach ($navigation['pages'] as $page): ?>
+          <li class="nav-item">
+            <a class="nav-link <?= isset($_GET['page']) && $_GET['page'] === strtolower($page->name) ? 'active border-bottom' : '' ?> ?>" href="<?= $page->path ?>"><?= $page->name ?></a>
+          </li>
+        <?php endforeach; ?>
 
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
