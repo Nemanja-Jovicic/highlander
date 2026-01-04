@@ -8,7 +8,8 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
         include '../functions.php';
         normalResponse([
             'data' => getAllCategories($link),
-            'pagination' => $categoryPagination()
+            'pagination' => $categoryPagination(),
+            'activePage' => $link
         ]);
     } catch (PDOException $th) {
         intervalServerError($th->getMessage());
