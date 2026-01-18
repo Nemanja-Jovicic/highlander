@@ -35,8 +35,7 @@ if (!$tourInfo) {
                                 <th scope="row"><?= $index + 1 ?></th>
 
                                 <td><?= date('d/m/Y', strtotime($date->start_date)) ?></td>
-                                <!-- <td><?= date('d/m/Y H:i:s', strtotime($date->start_date + $date->duration)) ?></td> -->
-                                <td>1</td>
+                                <td><?= calculateDate($date->start_date, $date->duration)?></td>
                                 <td><?= date('d/m/Y H:i:s', strtotime($date->created_at)) ?></td>
                                 <td><?= $date->updated_at !== null ? "" : "" ?></td>
                                 <td><button class="btn btn-sm btn-success btn-edit btn-edit-date"
