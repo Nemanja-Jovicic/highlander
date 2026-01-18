@@ -6,7 +6,7 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
     try {
         require_once '../../config/connection.php';
         include '../functions.php';
-        normalResponse(getOneTour($id));
+        normalResponse(['data' => getOneTour($id)] );
     } catch (PDOException $th) {
         invalidArugmentException($th->getMessage());
     }
