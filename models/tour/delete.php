@@ -1,5 +1,6 @@
 <?php 
 header("Content-type:application/json");
+include '../response_functions.php';
 if($_SERVER["REQUEST_METHOD"] === "POST"){
     $id = $_POST['id'];
     $status = $_POST['status'];
