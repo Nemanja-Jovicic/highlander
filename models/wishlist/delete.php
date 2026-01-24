@@ -5,14 +5,14 @@ include '../response_functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = $_SESSION['user']->id;
-    $tour_id = $_POST['tour_id'];
+    $wishlist_item = $_POST['wishlist_item_id'];
     try {
         require_once '../../config/connection.php';
         include '../functions.php';
-        deleteTourFromWishlist($user_id, $tour_id);
+        deleteTourFromWishlist($wishlist_item);
         normalResponse([
             'message' => 'Uspesno ste izbrisali stavku!',
-            'data'=> getAllItemsFromWishlist($user_id)
+            'data'=> getWishlistItems($user_id)
         ]);
     } catch (PDOException $e) {
         intervalServerError($e->getMessage());
