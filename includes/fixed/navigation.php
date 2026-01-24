@@ -3,7 +3,7 @@ $navigation = getMenu();
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container">
-    <a class="navbar-brand" href="<?= $navigation['home'] ?>$">Navbar</a>
+    <a class="navbar-brand" href="<?= $navigation['home'] ?>">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,6 +23,11 @@ $navigation = getMenu();
           <li class="nav-item"><a href="index.php?page=prijava" class="nav-link <?= isset($_GET['page']) && $_GET['page'] === 'prijava' ? 'active border-bottom' : '' ?>">Prijava</a></li>
           <li class="nav-item"><a href="index.php?page=registracija" class="nav-link <?= isset($_GET['page']) && $_GET['page'] === 'registracija' ? 'active border-bottom' : ''  ?>">Registracija</a></li>
         <?php else: ?>
+          <?php if(isset($_SESSION['user']) && $_SESSION['user']->role_id === 2):?>
+              <li class="nav-item"><a href="index.php?page=lista_zelja" class="nav-link <?= isset($_GET['page']) && $_GET['page'] === 'lista_zelja' ? 'active border-bottom' : '' ?>">Lista zelja</a></li>
+              <li class="nav-item"><a href="index.php?page=rezervacije" class="nav-link
+                <?=  isset($_GET['page']) && $_GET['page'] === 'rezervacije' ? 'active border-bottom' : '' ?>">Rezervacije</a></li>
+          <?php endif;?>
           <li class="nav-item"><a href="models/auth/logout.php" class="nav-link">Odjava</a></li>
         <?php endif; ?>
       </ul>
