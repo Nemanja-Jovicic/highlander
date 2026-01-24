@@ -9,9 +9,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
         require_once '../../config/connection.php';
         include '../functions.php';
         wishlistStore($user_id, $tour_id);
-        normalResponse([
-            'message' => "Uspesno ste dodatli na listu zelja!"
-        ]);
+        normalResponse(['message' => "Dodali ste putovanje u listu zelja"]);
     } catch (PDOException $th) {
        intervalServerError($th->getMessage());
     }
